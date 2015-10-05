@@ -1,0 +1,10 @@
+Source Files
+------------
+This project includes files and folders that are only needed if you want to make
+program changes.  If you just want to run the QuickReminder program, the
+following files and folders can be deleted:
+
+    Name                Description
+    ----                -----------
+    QuickReminder.ahk   Main script.
+    _Functions          Folder.  Contains source for included functions.
