@@ -1,9 +1,8 @@
 #!/bin/bash
 
-if [ -e ~/.zshrc ];
-then
+if [ -e ~/.zshrc ]; then
   echo "zshrc detected"
-  cp .dlowrc ~/
+  ln -s .dlowrc ~/.dlowrc
   echo "source ~/.dlowrc" >> ~/.zshrc
 else
   echo "copying to bashrc"
