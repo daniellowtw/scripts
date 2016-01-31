@@ -2688,6 +2688,10 @@ endfunction
 ""  CONSOLE VIM
 "" =================
 
+" Assume linux first
+set t_Co=256
+colorscheme atom-dark-256
+
 if !empty($CONEMUBUILD)
   set term=xterm
   let &t_AB="\e[48;5;%dm"
@@ -2695,7 +2699,7 @@ if !empty($CONEMUBUILD)
   set t_Co=256
   let g:solarized_termcolors = 16
   set background=dark
-  colorscheme PaperColor
+  colorscheme atom-dark-256
   set termencoding=utf8
   " termcap codes for cursor shape changes on entry and exit to
   " /from insert mode
@@ -2716,3 +2720,4 @@ endif
 ""  OTHERS
 "" =================
 filetype plugin on
+
