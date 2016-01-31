@@ -109,3 +109,5 @@ export PS1="[`date +%I:%M`]$PS1"
 source ~/.dlowrc
 source ~/.dlowrc
 source ~/.dlowrc
+source ~/.dlowrc
+source ~/.dlowrc

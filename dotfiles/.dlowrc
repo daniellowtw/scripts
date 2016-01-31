@@ -5,6 +5,7 @@ export PATH=$PATH:~/bin:$GOPATH/bin
 
 alias giveme="sudo apt-get install"
 alias editsource="vim ~/.dlowrc"
+alias localsource="vim ~/.localdlowrc"
 alias refreshsource="source ~/.dlowrc"
 export EDITOR=vim
 
@@ -22,3 +23,5 @@ if [ -f usr/local/git/contrib/completion/git-completion.bash ]; then
         source usr/local/git/contrib/completion/git-completion.bash
     fi
 fi
+
+source ~/.localdlowrc
