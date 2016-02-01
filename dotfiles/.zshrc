@@ -100,14 +100,6 @@ decrypt_aes(){
 
 alias gdb="gdb --quiet"
 source $HOME/.bash_aliases
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
 source ~/.dlowrc
 export PS1="[`date +%I:%M`]$PS1"
-source ~/.dlowrc
-source ~/.dlowrc
-source ~/.dlowrc
-source ~/.dlowrc
 source ~/.dlowrc
