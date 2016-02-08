@@ -2716,3 +2716,4 @@ endif
 ""  OTHERS
 "" =================
 filetype plugin on
+:nnoremap <F9> :setl noai nocin nosi inde=<CR>
