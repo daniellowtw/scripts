@@ -6,12 +6,8 @@ if [ -e /lib/ld-linux-armhf.so.3 ] || [ -e /lib/ld-linux-armel.so.3 ]; then
 	echo wget http://dave.chney.net/paste/go$VERSION.linux-arm.tar.gz
 	wget http://dave.chney.net/paste/go$VERSION.linux-arm.tar.gz
 else
-	echo "Multi arch not detected. Not sure what to download. Exiting
+	echo "Multi arch not detected. Not sure what to download. Exiting"
 	exit
 fi
 
 tar xzf go$VERSION.linux-arm.tar.gz
-
-
-
-
