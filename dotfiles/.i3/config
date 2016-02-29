@@ -169,3 +169,5 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym $mod+Control+Mod1+Right exec playerctl next
 bindsym $mod+Control+Mod1+Left exec playerctl previous
 new_window 1pixel
+
+exec xautolock -time 5 -locker "i3lock -c 000000"
