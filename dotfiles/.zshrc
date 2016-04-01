@@ -103,3 +103,9 @@ source $HOME/.bash_aliases
 source ~/.dlowrc
 export PS1="[`date +%I:%M`]$PS1"
 source ~/.dlowrc
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/home/daniel/google-cloud-sdk/path.zsh.inc'
+
+# The next line enables shell command completion for gcloud.
+source '/home/daniel/google-cloud-sdk/completion.zsh.inc'

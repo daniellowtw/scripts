@@ -149,11 +149,11 @@ Include gelguy/cmd2.vim
 " Include tpope/vim-dispatch
 
 " = Git integration =
-" Include tpope/vim-fugitive exe:git
-" Include tpope/vim-git exe:git
-" Include gregsexton/gitv exe:git include:vim-fugitive
-" Include airblade/vim-gitgutter exe:git
-" Include kablamo/vim-git-log exe:git
+Include tpope/vim-fugitive exe:git
+Include tpope/vim-git exe:git
+Include gregsexton/gitv exe:git include:vim-fugitive
+Include airblade/vim-gitgutter exe:git
+Include kablamo/vim-git-log exe:git
 
 " = Ag integration =
 " Include rking/ag.vim exe:ag
@@ -2720,4 +2720,18 @@ endif
 ""  OTHERS
 "" =================
 filetype plugin on
+set nolist
 
+
+"" =================
+""  relative number
+"" =================
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+nnoremap <C-n> :call NumberToggle()<cr>

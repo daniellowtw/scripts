@@ -5,8 +5,8 @@ export PATH=$PATH:~/bin:$GOPATH/bin
 
 alias giveme="sudo apt-get install"
 alias editsource="vim ~/.dlowrc"
-alias localsource="vim ~/.localdlowrc"
-alias refreshsource="source ~/.dlowrc"
+alias es="vim ~/.localdlowrc"
+alias rs="source ~/.dlowrc"
 export EDITOR=vim
 
 # =================
