@@ -1,0 +1,5 @@
+A personal cross platform configuration repo.
+
+# Todo
+
+* Consider using GNU stow to manager per app/per env config instead of using install scripts.
