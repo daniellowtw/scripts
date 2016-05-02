@@ -154,3 +154,18 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
+# bindsym Control+Mod1+Shift+l exec "i3lock -c 000000"
+bindsym Scroll_Lock exec "i3lock -c 000000"
+bindsym Control+$mod+s exec "shutter -s"
+# Multimedia Keys
+# increase volume
+bindsym $mod+Control+Mod1+Up exec amixer -q set Master 5%+ unmute
+# decrease volume
+bindsym $mod+Control+Mod1+Down exec amixer -q set Master 5%- unmute
+# mute volume
+# bindsym XF86AudioMute exec amixer -q set Master mute
+# pause / play / next / previous
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym $mod+Control+Mod1+Right exec playerctl next
+bindsym $mod+Control+Mod1+Left exec playerctl previous
+new_window 1pixel

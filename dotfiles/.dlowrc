@@ -1,21 +1,20 @@
 # (CHOICE) If you install golang
 export PATH=$PATH:/usr/local/go/bin
-export GOPATH=~/code/Gopher
-
-export PATH=$PATH:~/bin
+export GOPATH=~/code/go
+export PATH=$PATH:~/bin:$GOPATH/bin
 
 alias giveme="sudo apt-get install"
 alias editsource="vim ~/.dlowrc"
+alias localsource="vim ~/.localdlowrc"
 alias refreshsource="source ~/.dlowrc"
-
 export EDITOR=vim
 
 # =================
-#  Git 
+#  Git
 # =================
 
 # Copy git-completion.bash to home directory
-if [ -f usr/local/git/contrib/completion/git-completion.bash ]; then 
+if [ -f usr/local/git/contrib/completion/git-completion.bash ]; then
         # Add the following lines to ~/.bashrc
     if [ -x /usr/local/git/bin/git ]; then
         # (CHOICE) Choose whether to cp to home or not
@@ -24,3 +23,5 @@ if [ -f usr/local/git/contrib/completion/git-completion.bash ]; then
         source usr/local/git/contrib/completion/git-completion.bash
     fi
 fi
+
+source ~/.localdlowrc
