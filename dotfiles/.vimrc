@@ -2688,10 +2688,6 @@ endfunction
 ""  CONSOLE VIM
 "" =================
 
-" Assume linux first
-set t_Co=256
-colorscheme atom-dark-256
-
 if !empty($CONEMUBUILD)
   set term=xterm
   let &t_AB="\e[48;5;%dm"
@@ -2699,7 +2695,7 @@ if !empty($CONEMUBUILD)
   set t_Co=256
   let g:solarized_termcolors = 16
   set background=dark
-  colorscheme atom-dark-256
+  colorscheme PaperColor
   set termencoding=utf8
   " termcap codes for cursor shape changes on entry and exit to
   " /from insert mode
@@ -2735,3 +2731,4 @@ function! NumberToggle()
 endfunc
 
 nnoremap <C-n> :call NumberToggle()<cr>
+nnoremap <F9> :setl noai nocin nosi inde=<CR>
