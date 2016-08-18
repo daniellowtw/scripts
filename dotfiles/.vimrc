@@ -385,6 +385,7 @@ Include jelera/vim-javascript-syntax
 Include othree/javascript-libraries-syntax.vim
 " Include tikhomirov/vim-glsl
 
+
 " = Code analysis =
 " > very slow for large files
 " Include marijnh/tern_for_vim exe:node
@@ -2470,7 +2471,14 @@ let g:splash_screen_text =
       \ "   |||_    //  \\\\      \\\\  .-,_\\ /\\ /_,-.\n" .
       \ "  (__)_)  (_\")(\"_)    (__)  \\_)-'  '-(_/\n" .
       \ "\n" .
-      \ "Vim $VIMVERSION"
+      \ "Vim $VIMVERSION\n".
+      \ "\n".
+      \ "v to edit .vimrc\n".
+      \ "j to create scratch javascript file\n".
+      \ "r to open project from current directory\n".
+      \ "m to fuzzy search for file from this root\n".
+      \ "t to create scratch file\n"
+
 
 
 function! SplashScreen()
@@ -2722,13 +2730,14 @@ set nolist
 "" =================
 ""  relative number
 "" =================
+set relativenumber
 function! NumberToggle()
   if(&relativenumber == 1)
-    set number
+    set norelativenumber
   else
     set relativenumber
   endif
 endfunc
 
-nnoremap <C-n> :call NumberToggle()<cr>
+nnoremap <F2> :call NumberToggle()<cr>
 nnoremap <F9> :setl noai nocin nosi inde=<CR>
