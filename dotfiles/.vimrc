@@ -1,3 +1,6 @@
+let g:go_fmt_command = "goimports"
+let g:go_auto_sameids = 1
+let g:go_auto_type_info = 1
 "" =================
 ""  INIT
 "" =================
@@ -205,7 +208,7 @@ Include jistr/vim-nerdtree-tabs include:nerdtree
 "" ==== COMPLETION ====
 
 " = Autocomplete =
-" Include Shougo/neocomplete.vim has:lua
+Include Shougo/neocomplete.vim has:lua
 " Include Shougo/neocomplcache.vim
 " Include ervandew/supertab
 
@@ -215,7 +218,7 @@ Include jistr/vim-nerdtree-tabs include:nerdtree
 " = Snippets =
 " Include Shougo/neosnippet.vim
 " Include Shougo/neosnippet-snippets
-" Include SirVer/ultisnips has:python|python3
+Include SirVer/ultisnips has:python|python3
 " Include honza/vim-snippets
 
 "" ==== MOVEMENT ====
@@ -383,7 +386,10 @@ Include scrooloose/syntastic
 " Include pangloss/vim-javascript
 Include jelera/vim-javascript-syntax
 Include othree/javascript-libraries-syntax.vim
+Include garyburd/go-explorer
+Include fatih/vim-go
 " Include tikhomirov/vim-glsl
+
 
 
 " = Code analysis =
@@ -1249,28 +1255,28 @@ if Included('ultisnips')
     let g:UltiSnipsUsePythonVersion = 2
   endif
 
-  let g:UltiSnipsExpandTrigger = "\<Plug>(DoNothing)"
-  let g:UltiSnipsListSnippets = "\<Plug>(DoNothing)"
-  let g:UltiSnipsJumpForwardTrigger = "\<Plug>(DoNothing)"
-  let g:UltiSnipsJumpBackwardTrigger = "\<Plug>(DoNothing)"
+  " let g:UltiSnipsExpandTrigger = "\<Plug>(DoNothing)"
+  " let g:UltiSnipsListSnippets = "\<Plug>(DoNothing)"
+  " let g:UltiSnipsJumpForwardTrigger = "\<Plug>(DoNothing)"
+  " let g:UltiSnipsJumpBackwardTrigger = "\<Plug>(DoNothing)"
 
-  let g:ulti_expand_res = 0 "default value, just set once
-  function! s:Ulti_Expand_Res()
-    call UltiSnips#ExpandSnippet()
-    return g:ulti_expand_res
-  endfunction
+  " let g:ulti_expand_res = 0 "default value, just set once
+  " function! s:Ulti_Expand_Res()
+    " call UltiSnips#ExpandSnippet()
+    " return g:ulti_expand_res
+  " endfunction
 
-  let g:ulti_jump_forwards_res = 0 "default value, just set once
-  function! s:Ulti_Jump_Forwards_Res()
-    call UltiSnips#JumpForwards()
-    return g:ulti_jump_forwards_res
-  endfunction
+  " let g:ulti_jump_forwards_res = 0 "default value, just set once
+  " function! s:Ulti_Jump_Forwards_Res()
+    " call UltiSnips#JumpForwards()
+    " return g:ulti_jump_forwards_res
+  " endfunction
 
-  let g:ulti_jump_backwards_res = 0 "default value, just set once
-  function! s:Ulti_Jump_Backwards_Res()
-    call UltiSnips#JumpBackwards()
-    return g:ulti_jump_backwards_res
-  endfunction
+  " let g:ulti_jump_backwards_res = 0 "default value, just set once
+  " function! s:Ulti_Jump_Backwards_Res()
+    " call UltiSnips#JumpBackwards()
+    " return g:ulti_jump_backwards_res
+  " endfunction
 endif
 
 " = vim-colors-solarized =
@@ -2741,3 +2747,24 @@ endfunc
 
 nnoremap <F2> :call NumberToggle()<cr>
 nnoremap <F9> :setl noai nocin nosi inde=<CR>
+
+
+"" =================
+""  Go stuff
+"" =================
+
+" See more by typing :he go-mappings
+au FileType go nmap <leader><leader>r <Plug>(go-run)
+au FileType go nmap <leader><leader>b <Plug>(go-build)
+au FileType go nmap <leader><leader>t <Plug>(go-test)
+au FileType go nmap <leader><leader>c <Plug>(go-coverage)
+au FileType go nmap <leader><leader>ds <Plug>(go-def-split)
+au FileType go nmap <leader><leader>dt <Plug>(go-def-tab)
+au FileType go nmap <leader><leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <leader><leader>gd <Plug>(go-doc)
+au FileType go nmap <leader><leader>re <Plug>(go-rename)
+au FileType go nmap <leader><leader>v <Plug>(go-vet)
+au FileType go nmap <leader><leader>i <Plug>(go-info)
+let g:go_fmt_command = "goimports"
+let g:go_auto_sameids = 1
+let g:go_auto_type_info = 1
