@@ -24,4 +24,14 @@ if [ -f usr/local/git/contrib/completion/git-completion.bash ]; then
     fi
 fi
 
-source ~/.localdlowrc
+if [[ -f ~/.localdlowrc ]]; then
+  source ~/.localdlowrc
+fi
+
+
+# Easier find
+f() {
+  find . -iname "*$@*"
+}
+
+

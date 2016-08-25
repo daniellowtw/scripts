@@ -102,10 +102,13 @@ alias gdb="gdb --quiet"
 source $HOME/.bash_aliases
 source ~/.dlowrc
 export PS1="[`date +%I:%M`]$PS1"
-source ~/.dlowrc
+
+###
+# Gcloud stuff
+###
 
 # The next line updates PATH for the Google Cloud SDK.
-source '/home/daniel/google-cloud-sdk/path.zsh.inc'
+# source '/home/daniel/google-cloud-sdk/path.zsh.inc'
 
 # The next line enables shell command completion for gcloud.
-source '/home/daniel/google-cloud-sdk/completion.zsh.inc'
+# source '/home/daniel/google-cloud-sdk/completion.zsh.inc'
