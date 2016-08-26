@@ -171,3 +171,7 @@ bindsym $mod+Control+Mod1+Left exec playerctl previous
 new_window 1pixel
 
 exec xautolock -time 5 -locker "i3lock -c 000000"
+
+# Screenshot with selection
+bindsym $mod+Print exec "sleep 0.2; scrot -q 100 -s '/home/daniel/%Y-%m-%d-%H-%M-%S_$wx$h.png' -e 'xclip -i -selection clipboard'"
+#
