@@ -34,4 +34,14 @@ f() {
   find . -iname "*$@*"
 }
 
+# Docker-fu
+# Find ip of container
+#
 
+docker_ip() {
+  docker inspect $1 | grep IP
+}
+
+docker_clean_unused() {
+  docker images -q --filter "dangling=true" | xargs docker rmi
+}
