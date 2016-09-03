@@ -52,7 +52,9 @@ plugins=(git debian)
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/games"
 # export MANPATH="/usr/local/man:$MANPATH"
 
-source $ZSH/oh-my-zsh.sh
+if [[ -f $ZSH/oh-my-zsh.sh ]]; then
+  source $ZSH/oh-my-zsh.sh
+fi
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -99,7 +101,10 @@ decrypt_aes(){
 }
 
 alias gdb="gdb --quiet"
-source $HOME/.bash_aliases
+
+if [[ -f $HOME/.bash_aliases ]]; then
+  source $HOME/.bash_aliases
+fi
 source ~/.dlowrc
 export PS1="[`date +%I:%M`]$PS1"
 
@@ -112,3 +117,4 @@ export PS1="[`date +%I:%M`]$PS1"
 
 # The next line enables shell command completion for gcloud.
 # source '/home/daniel/google-cloud-sdk/completion.zsh.inc'
+source ~/.dlowrc
