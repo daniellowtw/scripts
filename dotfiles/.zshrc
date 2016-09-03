@@ -117,4 +117,3 @@ export PS1="[`date +%I:%M`]$PS1"
 
 # The next line enables shell command completion for gcloud.
 # source '/home/daniel/google-cloud-sdk/completion.zsh.inc'
-source ~/.dlowrc
