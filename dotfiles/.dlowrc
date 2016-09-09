@@ -46,4 +46,4 @@ docker_clean_unused() {
   docker images -q --filter "dangling=true" | xargs docker rmi
 }
 
-unalias ag
+unalias ag 2>/dev/null
