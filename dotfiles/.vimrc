@@ -2768,3 +2768,5 @@ au FileType go nmap <leader><leader>i <Plug>(go-info)
 let g:go_fmt_command = "goimports"
 let g:go_auto_sameids = 1
 let g:go_auto_type_info = 1
+" This is disabled as it maps to K
+let g:go_doc_keywordprg_enabled = 0
