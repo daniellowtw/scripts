@@ -2297,26 +2297,6 @@ imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
 
-" faster hjkl movement
-nnoremap H 5h
-nnoremap J 5j
-nnoremap K 5k
-nnoremap L 5l
-xnoremap H 5h
-xnoremap J 5j
-xnoremap K 5k
-xnoremap L 5l
-
-" move between windows
-noremap <C-j> <C-W>j
-noremap <C-k> <C-W>k
-noremap <C-h> <C-W>h
-noremap <C-l> <C-W>l
-
-" move between tabs
-nnoremap <C-Tab> gt
-nnoremap <C-S-Tab> gT
-
 " Allow arrow keys in Visual Block
 set keymodel-=stopsel
 
