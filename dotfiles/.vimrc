@@ -140,7 +140,7 @@ endfunction
 Include gmarik/Vundle.vim
 
 " = Fuzzy search completion =
-Include gelguy/cmd2.vim
+" Include gelguy/cmd2.vim
 
 "" ==== INTEGRATION ====
 
@@ -168,6 +168,7 @@ Include kablamo/vim-git-log exe:git
 "" ==== INTERFACE ====
 
 " = custom statusline =
+Include bling/vim-airline
 " Include bling/vim-airline has:gui_running
 " Include itchyny/lightline.vim !has:gui_running
 
@@ -316,7 +317,7 @@ Include godlygeek/tabular
 " Include moll/vim-bbye
 
 " = Repeat plugin commands with . =
-" Include tpope/vim-repeat
+Include tpope/vim-repeat
 
 " = Fuzzy filter =
 " Include tpope/vim-haystack
@@ -388,6 +389,7 @@ Include jelera/vim-javascript-syntax
 Include othree/javascript-libraries-syntax.vim
 Include garyburd/go-explorer
 Include fatih/vim-go
+Include google/vim-jsonnet
 " Include tikhomirov/vim-glsl
 
 
@@ -951,7 +953,6 @@ return results
         \ 'c': {'command': function('Cmd2#ext#complete#Main'), 'type': 'function'},
         \ 'h': {'command': "\<BS>\<BS>", 'type': 'literal'},
         \ 'Peekaboo': {'command': function('s:Peekaboo'), 'type': 'function'},
-        \ "\<C-R>": {'command': '12345', 'type': 'literal'},
         \ }
 
   cmap <C-S> <Plug>(Cmd2)
@@ -2011,13 +2012,6 @@ noremap <C-S> :update<CR>
 vnoremap <C-S> <C-C>:update<CR>
 inoremap <C-S> <C-O>:update<CR>
 
-" CTRL-A is Select all
-noremap <C-A> gggH<C-O>G
-inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
-onoremap <C-A> <C-C>gggH<C-O>G
-snoremap <C-A> <C-C>gggH<C-O>G
-xnoremap <C-A> <C-C>ggVG
-
 "" =================
 ""  PROJECT
 "" =================
@@ -2750,3 +2744,8 @@ let g:go_auto_sameids = 1
 let g:go_auto_type_info = 1
 " This is disabled as it maps to K
 let g:go_doc_keywordprg_enabled = 0
+
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
