@@ -1,6 +1,6 @@
 # (CHOICE) If you install golang
 export PATH=$PATH:/usr/local/go/bin
-export GOPATH=~/code/go
+export GOPATH=~/Private/code/go
 export PATH=$PATH:~/bin:$GOPATH/bin
 
 alias giveme="sudo apt-get install"
@@ -47,3 +47,6 @@ docker_clean_unused() {
 }
 
 unalias ag 2>/dev/null
+
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
