@@ -30,7 +30,7 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec gnome-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -155,6 +155,7 @@ bar {
         status_command i3status
 }
 # bindsym Control+Mod1+Shift+l exec "i3lock -c 000000"
+bindsym $mod+F12 exec "i3lock -c 000000"
 bindsym Scroll_Lock exec "i3lock -c 000000"
 bindsym Control+$mod+s exec "shutter -s"
 # Multimedia Keys
@@ -174,4 +175,4 @@ exec xautolock -time 5 -locker "i3lock -c 000000"
 
 # Screenshot with selection
 bindsym $mod+Print exec "sleep 0.2; scrot -q 100 -s '/home/daniel/%Y-%m-%d-%H-%M-%S_$wx$h.png' -e 'xclip -i -selection clipboard'"
-#
+focus_follows_mouse yes
