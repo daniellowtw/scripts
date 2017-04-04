@@ -1,7 +1,6 @@
 # (CHOICE) If you install golang
 export PATH=$PATH:/usr/local/go/bin
-export GOPATH=~/Private/code/go
-export PATH=$PATH:~/bin:$GOPATH/bin
+[[ ! -z $GOPATH ]] && export PATH=~/bin:$GOPATH/bin:$PATH
 
 alias giveme="sudo apt-get install"
 alias editsource="vim ~/.dlowrc"
