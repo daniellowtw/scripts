@@ -1,15 +1,13 @@
 #!/bin/bash
 source ./lib.sh
 warn
-symlink ".dlowrc"
-symlink ".zshrc"
 # make blank localdlowrc if it doesn't exist
 if [ ! -e ~/.localdlowrc ]; then
   echo "creating localdlowrc for local stuff"
   touch ~/.localdlowrc
 fi
 
-if [ -e ~/.zshrc ]; then
+if [[ -e ~/.zshrc ]]; then
   echo "zshrc detected"
   symlink ".zshrc"
   echo "source ~/.dlowrc" >> ~/.zshrc
