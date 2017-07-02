@@ -58,7 +58,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#show_tab_nr = 1
 
-let g:airline_theme = 'solarized'
 
 " = CtrlP file, buffer, ... finder =
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -172,7 +171,7 @@ set mouse=a
 " set shortmess+=Is
 
 " syntax highlighting
-syntax enable
+syntax on
 
 " display incomplete commands
 set showcmd
@@ -488,7 +487,7 @@ set nolist
 " easy vimrc handling
 nnoremap <leader>v :e $MYVIMRC<cr>
 nnoremap <leader>s :source $MYVIMRC<cr>
-
+colorscheme atom-dark
 
 "" =================
 ""  relative number

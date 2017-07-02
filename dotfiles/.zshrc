@@ -105,7 +105,6 @@ alias gdb="gdb --quiet"
 if [[ -f $HOME/.bash_aliases ]]; then
   source $HOME/.bash_aliases
 fi
-source ~/.dlowrc
 # export PS1="[`date +%I:%M`]$PS1"
 export PS1="[%D{%T}]%{$fg[blue]%}%m$PS1"
 
@@ -118,3 +117,4 @@ export PS1="[%D{%T}]%{$fg[blue]%}%m$PS1"
 
 # The next line enables shell command completion for gcloud.
 # source '/home/daniel/soft/google-cloud-sdk/completion.zsh.inc'
+source ~/.localdlowrc

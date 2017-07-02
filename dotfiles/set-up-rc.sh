@@ -10,9 +10,9 @@ fi
 if [[ -e ~/.zshrc ]]; then
   echo "zshrc detected"
   symlink ".zshrc"
-  echo "source ~/.dlowrc" >> ~/.zshrc
+  echo "source ~/.localdlowrc" >> ~/.zshrc
 else
   echo "No zshrc, copying to bashrc"
-  echo "source ~/.dlowrc" >> ~/.bashrc
+  echo "source ~/.localdlowrc" >> ~/.bashrc
 fi
 echo "Loaded zshrc. Please restart shell."
