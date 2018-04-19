@@ -7,6 +7,8 @@ git config --global alias.unstage 'reset HEAD --'
 git config --global alias.last 'log -1 HEAD'
 git config --global alias.recent "for-each-ref --sort=committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)'"
 git config --global url."git@github.com:".insteadOf "https://github.com/"
+git config --global alias.logd 'log --decorate'
+
 
 git config --global user.email daniellowtw@gmail.com
 git config --global user.name "Daniel Low"
