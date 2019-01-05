@@ -2,13 +2,7 @@
 ""  INIT
 "" =================
 
-" set encoding
 set encoding=utf-8
-let s:is_windows = has('win32') || has('win64')
-
-"" =================
-""  VIM SETUP
-"" =================
 
 " leader (to be set before plugin configs)
 let mapleader = "\<Space>"
@@ -23,10 +17,6 @@ let s:Include_path = expand('$HOME') . '/.vim/bundle/'
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
-
-" = External shell integration =
-Plugin 'benmills/vimux'
-map <Leader>vp :VimuxPromptCommand<CR>
 
 " = Git integration =
 Plugin 'tpope/vim-fugitive'
@@ -45,19 +35,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'kablamo/vim-git-log'
 
 " = custom statusline =
-Plugin 'bling/vim-airline'
 set laststatus=2
-set encoding=utf-8
-let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#tabline#show_tab_nr = 1
-
 
 " = CtrlP file, buffer, ... finder =
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -74,10 +52,6 @@ nnoremap <leader>m :CtrlPMRU<CR>
 nnoremap <leader>l :CtrlPLine<CR>
 nnoremap <leader>P :CtrlPMixed<CR>
 
-if executable('ag')
-  let g:ctrlp_user_command = 'ag -i --nocolor --nogroup --hidden --ignore .git --ignore .svn --ignore .hg --ignore .DS_Store -g "" %s'
-endif
-
 " = File explorer =
 Plugin 'scrooloose/nerdtree'
 let g:NERDTreeChDirMode=1
@@ -88,10 +62,6 @@ Plugin 'jistr/vim-nerdtree-tabs'
 let g:nerdtree_tabs_open_on_gui_startup=0
 let g:nerdtree_tabs_open_on_new_tab = 1
 nnoremap <silent> ¬ :NERDTreeTabsToggle<CR>
-
-" = Autocomplete =
-"" Requires lua ie compilation
-Plugin 'Shougo/neocomplete.vim'
 
 "" ==== MOVEMENT ====
 " = Easy and fast movement =
@@ -120,28 +90,6 @@ Plugin 'tpope/vim-surround'
 
 " = Repeat plugin commands with . =
 Plugin 'tpope/vim-repeat'
-
-" = Colorscheme switcher =
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-colorscheme-switcher'
-
-" = Colorschemes =
-" Plugin altercation/vim-colors-solarized
-" Plugin tomasr/molokai
-" Plugin sjl/badwolf
-" Plugin Pychimp/vim-luna
-" Plugin jonathanfilip/vim-lucius
-" Plugin nanotech/jellybeans.vim
-" Plugin w0ng/vim-hybrid
-" Plugin Zenburn
-" Plugin whatyouhide/vim-gotham
-" Plugin chriskempson/vim-tomorrow-theme
-" Plugin vim-scripts/apprentice.vim
-" Plugin endel/vim-github-colorscheme
-" Plugin junegunn/seoul256.vim
-" Plugin google/vim-colorscheme-primary
-Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'gosukiwi/vim-atom-dark'
 
 "" ==== LANGUAGE/SYNTAX ====
 
@@ -179,31 +127,6 @@ set showcmd
 " split windows to the right
 " not using splitbelow
 set splitright
-
-" hide GVIM toolbars
-set guioptions-=m
-set guioptions-=T
-set guioptions-=t
-set guioptions-=r
-set guioptions-=L
-set guioptions-=l
-
-" Initial window is maximised (only works in windows)
-if s:is_windows
-  augroup FullScreen
-    au!
-    au GUIEnter * simalt ~x
-  augroup END
-endif
-
-" GVIM font (custom font for powerline)
-" different font names for unix and windows
-if s:is_windows
-  " set guifont=Inconsolata_for_Powerline:h13:cANSI
-  set guifont=Inconsolata_for_Powerline_PNFT_:h13:cANSI
-else
-  set guifont=Inconsolata\ for\ Powerline\ 13
-endif
 
 " visual autocomplete for command menu
 set wildmenu
@@ -254,16 +177,6 @@ set hidden
 " open diffs in vertical split, show filler lines
 set diffopt=vertical,filler
 
-" use directx rendering
-if s:is_windows
-  " set renderoptions=type:directx,
-    " \gamma:1.5,contrast:0.5,geom:1,
-    " \renmode:5,taamode:1,level:0.5
-endif
-
-" don't conceal characters at cursorline
-set concealcursor=
-
 " jump to last known cursor position when file is opened
 augroup FileOpen
   au!
@@ -310,29 +223,12 @@ endfunction
 nnoremap gm :call cursor(0, strlen(getline('.'))/2)<CR>
 
 "" =================
-""  AUTOCOMPLETE
-"" =================
-
-augroup autocomplete
-  au!
-  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-augroup END
-
-"" =================
 ""  SPLASHSCREEN
 "" =================
 
 let g:splash_screen_loaded = 0
 
-if s:is_windows
-  let g:splash_screen_file = '~\vimfiles\vim_ANSI.splash'
-else
-  let g:splash_screen_file = '~\.vim\vim_ANSI.splash'
-endif
+let g:splash_screen_file = '~\.vim\vim_ANSI.splash'
 
 augroup splashscreen
   au!
@@ -345,7 +241,6 @@ function! RemoveSplashScreen()
     au! removesplashscreen
     au! resizesplashscreen
     silent! Bdelete! 1
-    let g:airline_section_a = airline#section#create_left(['mode', 'paste', 'capslock', 'iminsert'])
   else
     let g:splash_screen_loaded = 1
     nnoremap <silent> <buffer> q :q<CR>
@@ -404,7 +299,6 @@ function! SplashScreen()
     let patch_no = GetPatchNo()
     let version_no = version[0] . '.' . substitute(version[1:-1], '0\+', '', '') . (patch_no ? '.' . patch_no : '')
     exe 'silent file Vim\' version_no
-      let g:airline_section_a = airline#section#create([$VIMRUNTIME,'',''])
     silent! /\$VIMVERSION/
     call histdel('/', -1)
     exe 's/\$VIMVERSION/'version_no'/e'
@@ -487,7 +381,6 @@ set nolist
 " easy vimrc handling
 nnoremap <leader>v :e $MYVIMRC<cr>
 nnoremap <leader>s :source $MYVIMRC<cr>
-colorscheme atom-dark
 
 "" =================
 ""  relative number
@@ -503,29 +396,6 @@ endfunc
 
 nnoremap <F2> :call NumberToggle()<cr>
 nnoremap <F9> :setl noai nocin nosi inde=<CR>
-
-
-"" =================
-""  Go stuff
-"" =================
-
-" See more by typing :he go-mappings
-au FileType go nmap <leader><leader>r <Plug>(go-run)
-au FileType go nmap <leader><leader>b <Plug>(go-build)
-au FileType go nmap <leader><leader>t <Plug>(go-test)
-au FileType go nmap <leader><leader>c <Plug>(go-coverage)
-au FileType go nmap <leader><leader>ds <Plug>(go-def-split)
-au FileType go nmap <leader><leader>dt <Plug>(go-def-tab)
-au FileType go nmap <leader><leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <leader><leader>gd <Plug>(go-doc)
-au FileType go nmap <leader><leader>re <Plug>(go-rename)
-au FileType go nmap <leader><leader>v <Plug>(go-vet)
-au FileType go nmap <leader><leader>i <Plug>(go-info)
-let g:go_fmt_command = "goimports"
-let g:go_auto_sameids = 1
-let g:go_auto_type_info = 1
-" This is disabled as it maps to K
-let g:go_doc_keywordprg_enabled = 0
 
 vmap <Leader>y "+y
 vmap <Leader>d "+d
