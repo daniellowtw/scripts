@@ -94,7 +94,7 @@ Plugin 'tpope/vim-repeat'
 "" ==== LANGUAGE/SYNTAX ====
 
 " = Syntax checking =
-Plugin 'scrooloose/syntastic'
+Plugin 'vim-syntastic/syntastic'
 
 " = Language syntax =
 Plugin 'jelera/vim-javascript-syntax'
@@ -397,7 +397,12 @@ endfunc
 nnoremap <F2> :call NumberToggle()<cr>
 nnoremap <F9> :setl noai nocin nosi inde=<CR>
 
-vmap <Leader>y "+y
+" Useful for copying things from vim to windows clipboard in WSL
+map <Leader>b :call system("/mnt/c/Windows/System32/clip.exe", @0)<CR>
+vmap <Leader>y y<Leader>b
+
+" Use for when using linux instead
+" vmap <Leader>y "+y
 vmap <Leader>d "+d
 nmap <Leader>p "+p
 nmap <Leader>P "+P
