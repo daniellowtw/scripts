@@ -1,10 +1,20 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# cd to script dir
+cd $(dirname "$0")
+
 source ./lib.sh
 warn
 # make blank localdlowrc if it doesn't exist
-if [ ! -e ~/.localdlowrc ]; then
+if [[ ! -e ~/.localdlowrc ]]; then
   echo "creating localdlowrc for local stuff"
-  touch ~/.localdlowrc
+  cp .localdlowrc ~/.localdlowrc
+fi
+
+if [[ ! -e ~/bin ]]; then 
+
+echo "Set up local bin"
+mkdir -p ~/bin
 fi
 
 if [[ -e ~/.zshrc ]]; then

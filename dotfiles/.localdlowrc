@@ -1,11 +1,12 @@
 # (CHOICE) If you install golang
-export PATH=$PATH:/usr/local/go/bin
-[[ ! -z $GOPATH ]] && export PATH=~/bin:$GOPATH/bin:$PATH
+
+export PATH=~/bin:$PATH
+[[ -d /usr/local/go/bin ]] && export PATH=$PATH:/usr/local/go/bin
+[[ ! -z $GOPATH ]] && export PATH=$GOPATH/bin:$PATH
 
 alias giveme="sudo apt-get install"
-alias editsource="vim ~/.dlowrc"
 alias es="vim ~/.localdlowrc"
-alias rs="source ~/.dlowrc"
+alias rs="source ~/.localdlowrc"
 export EDITOR=vim
 
 # =================
@@ -22,11 +23,6 @@ if [ -f usr/local/git/contrib/completion/git-completion.bash ]; then
         source usr/local/git/contrib/completion/git-completion.bash
     fi
 fi
-
-if [[ -f ~/.localdlowrc ]]; then
-  source ~/.localdlowrc
-fi
-
 
 # Easier find
 f() {
