@@ -1,15 +1,15 @@
-"" =================
-""  INIT
-"" =================
+" Config 201908
+
+" BASICS {{{
 
 set encoding=utf-8
-
-" leader (to be set before plugin configs)
+set modeline
+set modelines=4
 let mapleader = "\<Space>"
 
-"" =================
-""  PLUGINS
-"" =================
+" }}}
+
+" PLUGINS {{{
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -52,7 +52,6 @@ nnoremap <leader>m :CtrlPMRU<CR>
 nnoremap <leader>l :CtrlPLine<CR>
 nnoremap <leader>P :CtrlPMixed<CR>
 
-" = File explorer =
 Plugin 'scrooloose/nerdtree'
 let g:NERDTreeChDirMode=1
 let NERDTreeCascadeOpenSingleChildDir=1
@@ -63,7 +62,6 @@ let g:nerdtree_tabs_open_on_gui_startup=0
 let g:nerdtree_tabs_open_on_new_tab = 1
 nnoremap <silent> ¬ :NERDTreeTabsToggle<CR>
 
-"" ==== MOVEMENT ====
 " = Easy and fast movement =
 Plugin 'Lokaltog/vim-easymotion'
 let g:EasyMotion_leader_key = '<leader>'
@@ -91,8 +89,6 @@ Plugin 'tpope/vim-surround'
 " = Repeat plugin commands with . =
 Plugin 'tpope/vim-repeat'
 
-"" ==== LANGUAGE/SYNTAX ====
-
 " = Syntax checking =
 Plugin 'vim-syntastic/syntastic'
 
@@ -102,15 +98,14 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'garyburd/go-explorer'
 Plugin 'fatih/vim-go'
 Plugin 'google/vim-jsonnet'
-
 filetype off
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
-"" =================
-""  UI CONFIG
-"" =================
+" }}}
+
+" UI {{{
 
 " enable mouse
 set mouse=a
@@ -124,8 +119,7 @@ syntax on
 " display incomplete commands
 set showcmd
 
-" split windows to the right
-" not using splitbelow
+" split windows to the right not using splitbelow
 set splitright
 
 " visual autocomplete for command menu
@@ -186,9 +180,9 @@ augroup FileOpen
         \ endif
 augroup END
 
-"" =================
-""  WHITESPACE
-"" =================
+" }}}
+
+" Whitespace {{{
 
 " set indentation
 set tabstop=2
@@ -222,9 +216,9 @@ endfunction
 " move cursor to middle of line
 nnoremap gm :call cursor(0, strlen(getline('.'))/2)<CR>
 
-"" =================
-""  SPLASHSCREEN
-"" =================
+" }}}
+
+" Splashscreen {{{
 
 let g:splash_screen_loaded = 0
 
@@ -372,9 +366,21 @@ function! JustifyContents()
   call AuRemoveSplashScreen()
 endfunction
 
-"" =================
-""  OTHERS
-"" =================
+" }}}
+
+" Section Folding {{{
+set foldenable
+set foldlevelstart=10
+set foldnestmax=10
+set foldmethod=syntax
+hi Folded ctermfg=White
+hi Folded ctermbg=Black
+"Open and close folds
+nnoremap <leader>z za
+" }}}
+
+" OTHER {{{
+
 filetype plugin on
 set nolist
 
@@ -382,9 +388,6 @@ set nolist
 nnoremap <leader>v :e $MYVIMRC<cr>
 nnoremap <leader>s :source $MYVIMRC<cr>
 
-"" =================
-""  relative number
-"" =================
 set relativenumber
 function! NumberToggle()
   if(&relativenumber == 1)
@@ -406,3 +409,7 @@ vmap <Leader>y y<Leader>b
 vmap <Leader>d "+d
 nmap <Leader>p "+p
 nmap <Leader>P "+P
+
+" }}}
+
+" vim: fdm=marker:foldlevel=0

@@ -118,3 +118,5 @@ export PS1="[%D{%T}]%{$fg[blue]%}%m$PS1"
 # The next line enables shell command completion for gcloud.
 # source '/home/daniel/soft/google-cloud-sdk/completion.zsh.inc'
 source ~/.localdlowrc
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
