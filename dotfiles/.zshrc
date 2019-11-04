@@ -120,3 +120,4 @@ export PS1="[%D{%T}]%{$fg[blue]%}%m$PS1"
 source ~/.localdlowrc
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export DOCKER_HOST=tcp://localhost:2375
