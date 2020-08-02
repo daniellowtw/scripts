@@ -38,6 +38,9 @@ Plugin 'kablamo/vim-git-log'
 set laststatus=2
 
 " = CtrlP file, buffer, ... finder =
+" Ignore these files since we won't want to open them in vim.
+set wildignore+=*.jpg,*.JPG,*.ARW,*.MP4,*.THM,*.jpeg,*.png,*.mp4,*.gif,*.lnk,*.pdf
+set wildignore+=*~,*.swp,*.tmp,.git,node_modules
 Plugin 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
@@ -45,7 +48,7 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_switch_buffer = 'ET'
 let g:ctrlp_custom_ignore = {
       \ 'dir': 'node_modules\\',
-      \ 'file': '\~$'
+      \ 'file': '\v\.(JPG)$'
       \ }
 nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>m :CtrlPMRU<CR>
@@ -98,7 +101,19 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'garyburd/go-explorer'
 Plugin 'fatih/vim-go'
 Plugin 'google/vim-jsonnet'
+Plugin 'dyng/ctrlsf.vim'
+
+nmap <leader>o <Plug>CtrlSFPrompt
+nnoremap <C-F>t :CtrlSFToggle<CR>
+let g:ctrlsf_default_view_mode = 'compact'
+let g:ctrlsf_extra_backend_args = {
+      \ 'rg': '-g "!node_modules"'
+      \ }
+
+
+
 filetype off
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -215,6 +230,8 @@ endfunction
 
 " move cursor to middle of line
 nnoremap gm :call cursor(0, strlen(getline('.'))/2)<CR>
+
+colorscheme spacecamp
 
 " }}}
 
