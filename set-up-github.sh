@@ -13,9 +13,10 @@ git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(ye
 
 echo "Do you want to set your user.name and user.email to your gmail? [y/n]"
 read res
-if [[ res == 'y' ]]; then
+if [[ $res == "y" ]]; then
   git config --global user.email daniellowtw@gmail.com
   git config --global user.name "Daniel Low"
+  echo "Done. Bye"
 else
   echo "You said $res. Bye"
 fi
