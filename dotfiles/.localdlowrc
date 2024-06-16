@@ -3,8 +3,9 @@
 export PATH=~/bin:$PATH
 [[ -d /usr/local/go/bin ]] && export PATH=$PATH:/usr/local/go/bin
 [[ ! -z $GOPATH ]] && export PATH=$GOPATH/bin:$PATH
+[[ ! -z /opt/nvim-linux64/bin ]] && export PATH="$PATH:/opt/nvim-linux64/bin"
 
-alias giveme="sudo apt-get install"
+alias giveme="sudo apt install"
 alias es="vim ~/.localdlowrc"
 alias rs="source ~/.localdlowrc"
 export EDITOR=vim
@@ -45,3 +46,4 @@ unalias ag 2>/dev/null
 
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
+
