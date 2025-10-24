@@ -25,11 +25,6 @@ if [ -f usr/local/git/contrib/completion/git-completion.bash ]; then
     fi
 fi
 
-# Easier find
-f() {
-  find . -iname "*$@*"
-}
-
 # Docker-fu
 # Find ip of container
 #
@@ -42,8 +37,6 @@ docker_clean_unused() {
   docker images -q --filter "dangling=true" | xargs docker rmi
 }
 
-unalias ag 2>/dev/null
-
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
+#alias pbcopy='xclip -selection clipboard'
+#alias pbpaste='xclip -selection clipboard -o'
 

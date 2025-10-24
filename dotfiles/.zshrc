@@ -61,14 +61,7 @@ if [[ -f $HOME/.bash_aliases ]]; then
   source $HOME/.bash_aliases
 fi
 
-# Installed via git
-[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
-
-# Installed via apt
-if [[ -f /usr/share/doc/fzf ]]; then
-  source /usr/share/doc/fzf/examples/key-bindings.zsh
-  source /usr/share/doc/fzf/examples/completion.zsh
-fi
-
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
 source ~/.localdlowrc

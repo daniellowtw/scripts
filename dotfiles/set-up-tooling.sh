@@ -4,7 +4,7 @@
 cd $(dirname "$0")
 
 source ./lib.sh
-warn
+warn "This will install software from the internet"
 
 OS=$(uname | awk '{print tolower($0)}')
 
@@ -20,14 +20,14 @@ fi
 
 download_shfmt() {
 
-  SHFMT_VERSION=2.6.4
+  SHFMT_VERSION=3.12.0
   local SHFMT_SUFFIX
   if [[ $(uname -m) =~ "arm" ]]; then
     SHFMT_SUFFIX="arm"
   else
     SHFMT_SUFFIX="amd64"
   fi
-  wget https://github.com/mvdan/sh/releases/download/v$SHFMT_VERSION/shfmt_v${SHFMT_VERSION}_${OS}_${SHFMT_SUFFIX} --output-document=~/bin/shfmt
+  curl -L https://github.com/mvdan/sh/releases/download/v$SHFMT_VERSION/shfmt_v${SHFMT_VERSION}_${OS}_${SHFMT_SUFFIX} --output ~/.local/bin/shfmt
   chmod +x ~/bin/shfmt
   echo "Install shfmt v${SHFMT_VERSION}"
 }
