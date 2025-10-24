@@ -430,3 +430,6 @@ nmap <Leader>P "+P
 " }}}
 
 " vim: fdm=marker:foldlevel=0
+
+inoremap <leader>d <C-R>=strftime("%Y-%m-%d")<CR>
+
