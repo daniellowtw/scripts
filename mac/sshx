@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+# See https://xicod.com/2021/02/09/clipboard-over-ssh.html for full explanation
+# TL;DR Create a file pocket, use master connection to multiplex SSH conns
+
+set -e
+
+function sshx_trap {
+  if [ -S $t ]; then
+    ssh -S$t DUMMY_HOST "command rm $f" || :
+    ssh -oControlPath=$t -O exit DUMMY_HOST || :
+  fi
+}
+trap sshx_trap EXIT
+
+t=$(mktemp -u --tmpdir ssh.sock.XXXXXXXXXX)
+f="~/clip-$(date +%s)"
+
+ssh -f -oControlMaster=yes -oControlPath=$t $@ tail\ -f\ /dev/null \
+  &> >(grep -v '^mux_master_process_new_session: tcgetattr: Inappropriate ioctl for device')
+
+ssh -S$t DUMMY_HOST "bash -c 'if ! [ -p $f ]; then mkfifo $f; fi'"
+
+(
+  set -e
+  set -o pipefail
+  while [ 1 ]; do
+    # pbcopy for mac client, xclip for linux client
+    ssh -S$t -tt DUMMY_HOST "cat $f" 2>/dev/null | pbcopy
+    # ioctl error is thrown by this command in some versions of
+    # ssh client because we're forcing here a PTY in order to keep hold of
+    # the remote cat command. This prevents remote having cat processes
+    # sticking around long after the session is closed. The issue is
+    # that the ssh command of ControlMaster is running in the background
+    # and therefore has the tcgetattr() call failing,
+    # not getting terminal properties.
+  done &
+)
+
+ssh -S$t -t DUMMY_HOST
