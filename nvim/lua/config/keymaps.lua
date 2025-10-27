@@ -4,6 +4,6 @@
 --
 --
 -- Add this date insertion keymap
-vim.keymap.set("i", "<leader>d", function()
+vim.keymap.set("i", "<leader>dt", function()
   return os.date("%Y-%m-%d")
 end, { expr = true, desc = "Insert current date" })

@@ -3,12 +3,15 @@ DISABLE_AUTO_UPDATE="true"
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+    alias ls='ls --color=auto -lh'
+else
+    alias ls='ls --color=auto -lh'
 fi
 
 setopt histignorealldups sharehistory
 setopt HIST_NO_STORE            # do not save history commands
 setopt HIST_IGNORE_SPACE
+set -o vi
 
 
 HISTSIZE=4096

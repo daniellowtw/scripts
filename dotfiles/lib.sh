@@ -11,5 +11,6 @@ warn() {
   echo # (optional) move to a new line
   if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     echo "You said no. Bye."
+    exit 1
   fi
 }
