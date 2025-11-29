@@ -1,0 +1,7 @@
+# Linux setup commands
+
+# Install Pi-hole (network-wide ad blocker)
+install-pihole:
+    @echo "Installing Pi-hole..."
+    @echo "This will make significant system changes (DNS server, web server, etc.)"
+    curl -sSL https://install.pi-hole.net | bash

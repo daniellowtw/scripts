@@ -16,6 +16,7 @@ declare -A COMPONENTS=(
   [6]="Go - Go programming language"
   [7]="Oh My Zsh - Zsh configuration framework"
   [8]="Docker - Container platform"
+  [9]="just - Command runner"
 )
 
 declare -A INSTALLER_SCRIPTS=(
@@ -27,6 +28,7 @@ declare -A INSTALLER_SCRIPTS=(
   [6]="${SCRIPT_DIR}/lib/installers/golang.sh"
   [7]="${SCRIPT_DIR}/lib/installers/oh-my-zsh.sh"
   [8]="${SCRIPT_DIR}/lib/installers/docker.sh"
+  [9]="${SCRIPT_DIR}/lib/installers/just.sh"
 )
 
 # Print header
@@ -95,7 +97,7 @@ main() {
     read -p "Select option: " choice
 
     case "$choice" in
-    [1-8])
+    [1-9])
       install_component "$choice"
       ;;
     a | A)
