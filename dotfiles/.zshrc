@@ -68,3 +68,7 @@ fi
 source <(fzf --zsh)
 
 source ~/.localdlowrc
+
+source /Users/daniel/.config/broot/launcher/bash/br
+
+[ -f "/Users/daniel/.ghcup/env" ] && . "/Users/daniel/.ghcup/env" # ghcup-env
