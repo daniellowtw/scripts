@@ -5,3 +5,16 @@ install-pihole:
     @echo "Installing Pi-hole..."
     @echo "This will make significant system changes (DNS server, web server, etc.)"
     curl -sSL https://install.pi-hole.net | bash
+
+# Install Tailscale (mesh VPN)
+install-tailscale:
+    @echo "Installing Tailscale..."
+    @echo "Adding Tailscale repository and signing key..."
+    curl -fsSL https://pkgs.tailscale.com/stable/debian/trixie.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null
+    curl -fsSL https://pkgs.tailscale.com/stable/debian/trixie.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list
+    @echo "Updating package list and installing Tailscale..."
+    sudo apt-get update
+    sudo apt-get install -y tailscale
+    @echo "Tailscale installed successfully!"
+    @echo "Run 'sudo tailscale up' to connect to your network"
+    @echo "Run 'tailscale ip -4' to see your Tailscale IP address"

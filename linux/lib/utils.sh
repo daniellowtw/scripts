@@ -5,7 +5,7 @@
 # Get the script directory (works when sourced from different locations)
 get_script_dir() {
     if [[ -n "${BASH_SOURCE[0]}" ]]; then
-        dirname "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+        (cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
     else
         pwd
     fi
