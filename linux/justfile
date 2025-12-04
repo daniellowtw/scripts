@@ -1,5 +1,9 @@
 # Linux setup commands
 
+# List all available recipes (default)
+default:
+    @just --list
+
 # Install Pi-hole (network-wide ad blocker)
 install-pihole:
     @echo "Installing Pi-hole..."
