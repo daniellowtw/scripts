@@ -25,18 +25,6 @@ if [ -f usr/local/git/contrib/completion/git-completion.bash ]; then
     fi
 fi
 
-<<<<<<< Updated upstream
-=======
-function gre(){
-  git recent | fzf | cut -d' ' -f 2 | xargs git co ${}
-}
-
-# Easier find
-f() {
-  find . -iname "*$@*"
-}
-
->>>>>>> Stashed changes
 # Docker-fu
 # Find ip of container
 #

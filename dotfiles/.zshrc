@@ -32,6 +32,10 @@ if [[ -f $ZSH/oh-my-zsh.sh ]]; then
   export PS1="[%D{%T}]%{$fg[blue]%}%m$PS1"
 fi
 
+function gre(){
+  git recent | fzf | cut -d' ' -f 2 | xargs git co ${}
+}
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 #
