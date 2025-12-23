@@ -64,15 +64,19 @@ alias rz="source ~/.zshrc"
 # N.B will still appear in current session's history.
 alias incognito=' unset HISTFILE'
 
+command -v nvim > /dev/null && alias vim=nvim
+command -v xplr > /dev/null && alias xp=xplr
+
 if [[ -f $HOME/.bash_aliases ]]; then
   source $HOME/.bash_aliases
 fi
 
 # Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
+command -v fzf > /dev/null && source <(fzf --zsh)
+command -v zoxide > /dev/null && eval "$(zoxide init zsh)"
 
 source ~/.localdlowrc
 
-source /Users/daniel/.config/broot/launcher/bash/br
-
 [ -f "/Users/daniel/.ghcup/env" ] && . "/Users/daniel/.ghcup/env" # ghcup-env
+export PATH="$HOME/.local/bin:$PATH"
+source ~/.localdlowrc

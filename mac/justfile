@@ -1,0 +1,37 @@
+# Linux setup commands
+
+# List all available recipes (default)
+default:
+    @just --list
+
+# Install Pi-hole (network-wide ad blocker)
+install-pihole:
+    @echo "Installing Pi-hole..."
+    @echo "This will make significant system changes (DNS server, web server, etc.)"
+    curl -sSL https://install.pi-hole.net | bash
+
+# Install Tailscale (mesh VPN)
+install-tailscale:
+    @echo "Installing Tailscale..."
+    @echo "Adding Tailscale repository and signing key..."
+    curl -fsSL https://pkgs.tailscale.com/stable/debian/trixie.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null
+    curl -fsSL https://pkgs.tailscale.com/stable/debian/trixie.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list
+    @echo "Updating package list and installing Tailscale..."
+    sudo apt-get update
+    sudo apt-get install -y tailscale
+    @echo "Tailscale installed successfully!"
+    @echo "Run 'sudo tailscale up' to connect to your network"
+    @echo "Run 'tailscale ip -4' to see your Tailscale IP address"
+
+install-claude:
+    curl -fsSL https://claude.ai/install.sh | bash
+
+install-tools:
+    brew install fzf jq ripgrep direnv uv neovim ncdu tig
+
+install-rust-tools:
+    cargo install starship xplr zoxide
+
+[working-directory: '../dotfiles/']
+setup:
+    bash ./set-up-vim.sh

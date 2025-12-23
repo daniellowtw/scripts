@@ -5,6 +5,7 @@ if $(command -v nvim >/dev/null); then
   warn "Installing for nvim"
   echo Symlinked nvim directory
   rm -rf ~/.config/nvim
+  mkdir -p ~/.config
   ln -s $(pwd)/../nvim ~/.config/nvim
   echo "Please open nvim"
 
