@@ -26,12 +26,41 @@ install-tailscale:
 install-claude:
     curl -fsSL https://claude.ai/install.sh | bash
 
+install-go:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    echo "Installing Go using official installer..."
+    echo "Detecting architecture..."
+    ARCH=$(uname -m)
+    if [ "$ARCH" = "arm64" ]; then
+        GO_PKG="go1.23.4.darwin-arm64.pkg"
+    else
+        GO_PKG="go1.23.4.darwin-amd64.pkg"
+    fi
+    echo "Downloading Go for $ARCH..."
+    curl -LO "https://go.dev/dl/$GO_PKG"
+    echo "Installing Go..."
+    sudo installer -pkg "$GO_PKG" -target /
+    rm "$GO_PKG"
+    echo "Go installed successfully to /usr/local/go!"
+    echo "Run 'go version' to verify installation"
+    echo "Note: /usr/local/go/bin should be in your PATH"
+
 install-tools:
-    brew install fzf jq ripgrep direnv uv neovim ncdu tig
+    brew install fzf jq ripgrep direnv uv neovim ncdu tig entr
 
 install-rust-tools:
     cargo install starship xplr zoxide
 
 [working-directory: '../dotfiles/']
 setup:
-    bash ./set-up-vim.sh
+    bash ./set-up-vim.sh || true
+    defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+    defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false
+    defaults write com.vscodium ApplePressAndHoldEnabled -bool false
+    defaults write com.microsoft.VSCodeExploration ApplePressAndHoldEnabled -bool false
+    defaults write com.exafunction.windsurf ApplePressAndHoldEnabled -bool false
+    defaults delete -g ApplePressAndHoldEnabled
+
+
+install: install-tools install-rust-tools

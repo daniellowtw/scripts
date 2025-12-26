@@ -63,6 +63,7 @@ alias ez="vim ~/.zshrc"
 alias rz="source ~/.zshrc"
 # N.B will still appear in current session's history.
 alias incognito=' unset HISTFILE'
+alias uvenv="source .venv/bin/activate"
 
 command -v nvim > /dev/null && alias vim=nvim
 command -v xplr > /dev/null && alias xp=xplr
