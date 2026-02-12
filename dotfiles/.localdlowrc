@@ -37,6 +37,9 @@ docker_clean_unused() {
   docker images -q --filter "dangling=true" | xargs docker rmi
 }
 
+kkk() { file=$(fzf --preview="bat --color=always {}") && [[ -n "$file" ]] && vim "$file"; }
+gre() { git recent | fzf | cut -d' ' -f 2 | xargs git checkout ${} }
+
 #alias pbcopy='xclip -selection clipboard'
 #alias pbpaste='xclip -selection clipboard -o'
 
