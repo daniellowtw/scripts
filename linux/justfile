@@ -10,6 +10,9 @@ install-pihole:
     @echo "This will make significant system changes (DNS server, web server, etc.)"
     curl -sSL https://install.pi-hole.net | bash
 
+install-uv:
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+
 # Install Tailscale (mesh VPN)
 install-tailscale:
     @echo "Installing Tailscale..."

@@ -59,6 +59,7 @@ decrypt_aes(){
 }
 
 alias gdb="gdb --quiet"
+alias dl="cd ~/Downloads/"
 alias ez="vim ~/.zshrc"
 alias rz="source ~/.zshrc"
 # N.B will still appear in current session's history.
