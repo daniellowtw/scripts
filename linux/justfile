@@ -13,6 +13,16 @@ install-pihole:
 install-uv:
     curl -LsSf https://astral.sh/uv/install.sh | sh
 
+install-node:
+    #https://nodejs.org/en/download
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+    # in lieu of restarting the shell
+    \. "$HOME/.nvm/nvm.sh"
+    nvm install 24
+    node -v # Should print "v24.13.1".
+    corepack enable pnpm
+    pnpm -v
+
 # Install Tailscale (mesh VPN)
 install-tailscale:
     @echo "Installing Tailscale..."
