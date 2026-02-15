@@ -1,6 +1,7 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
-vim.cmd("source $MYVIMRC/../copy.vim")
+-- seems to break on linux
+-- vim.cmd("source $MYVIMRC/../copy.vim")
 
 -- Auto line break
 vim.opt.wrap = true

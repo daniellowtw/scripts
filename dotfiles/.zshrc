@@ -65,6 +65,10 @@ alias rz="source ~/.zshrc"
 # N.B will still appear in current session's history.
 alias incognito=' unset HISTFILE'
 alias uvenv="source .venv/bin/activate"
+alias ll='ls -lahr'
+
+# N.B. sets some path. subsequent commands might depend on this.
+source ~/.localdlowrc
 
 command -v nvim > /dev/null && alias vim=nvim
 command -v xplr > /dev/null && alias xp=xplr
@@ -77,11 +81,8 @@ fi
 command -v fzf > /dev/null && source <(fzf --zsh)
 command -v zoxide > /dev/null && eval "$(zoxide init zsh)"
 
-source ~/.localdlowrc
-
 [ -f "/Users/daniel/.ghcup/env" ] && . "/Users/daniel/.ghcup/env" # ghcup-env
 export PATH="$HOME/.local/bin:$PATH"
-source ~/.localdlowrc
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

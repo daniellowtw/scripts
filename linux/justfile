@@ -14,6 +14,7 @@ install-uv:
     curl -LsSf https://astral.sh/uv/install.sh | sh
 
 install-node:
+    #!/usr/bin/env bash
     #https://nodejs.org/en/download
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
     # in lieu of restarting the shell
