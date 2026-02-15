@@ -21,7 +21,7 @@ fi
 if [[ $(command -v nvim) ]]; then
   echo "nvim is already installed"
 else
-  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-arm64.tar.gz
+  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
   sudo rm -rf /opt/nvim
   sudo tar -C /opt -xzf nvim-linux64.tar.gz
   rm nvim-linux64.tar.gz
