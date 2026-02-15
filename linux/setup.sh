@@ -38,7 +38,6 @@ else
   echo "Installing Rust"
   # Interactive
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-  $HOME/.local/bin/cargo install zellij
 fi
 
 # Python
