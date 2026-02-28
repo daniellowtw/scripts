@@ -4,6 +4,7 @@ git config --global alias.st status
 git config --global alias.co checkout
 git config --global alias.br branch
 git config --global alias.ci 'commit -v'
+git config --global alias.cia 'commit -av'
 git config --global alias.unstage 'reset HEAD --'
 git config --global alias.last 'log -1 HEAD'
 git config --global alias.recent "for-each-ref --sort=committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)'"
@@ -11,7 +12,9 @@ git config --global alias.recent "for-each-ref --sort=committerdate refs/heads/ 
 git config --global alias.logd 'log --decorate'
 git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 # Rebase when pulling
-git config pull.rebase true
+git config --global pull.rebase true
+git config --global init.defaultBranch main
+git config --global push.autoSetupRemote true
 
 echo "Do you want to set your user.name and user.email to your gmail? [y/n]"
 read res
