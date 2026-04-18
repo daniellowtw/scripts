@@ -14,9 +14,8 @@ command -v fzf >/dev/null && fzf --fish | source
 command -v xplr >/dev/null && alias xp=xplr
 
 function f
-    set search $1
-    shift
-    find . -iname "*$search*" $argv 2>/dev/null
+    set search $argv[1]
+    find . -iname "*$search*" $argv[2..-1] 2>/dev/null
 end
 
 function gre
