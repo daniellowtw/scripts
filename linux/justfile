@@ -37,6 +37,24 @@ install-tailscale:
     @echo "Run 'sudo tailscale up' to connect to your network"
     @echo "Run 'tailscale ip -4' to see your Tailscale IP address"
 
+install-tea:
+    #!/usr/bin/env bash
+    ARCH=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')
+    VERSION="0.14.0"
+    URL="https://dl.gitea.com/tea/${VERSION}/tea-${VERSION}-linux-${ARCH}"
+    wget -O tea "$URL" || curl -Lo tea "$URL"
+    wget -O tea.sha256 "${URL}.sha256" || curl -Lo tea.sha256 "${URL}.sha256"
+    sha256sum -c tea.sha256 && rm tea.sha256
+    chmod +x tea && sudo mv tea /usr/local/bin/tea
+    echo "tea ${VERSION} installed"
+
+install-fish:
+    #!/usr/bin/env bash
+    echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/4/Debian_13/ /' | sudo tee /etc/apt/sources.list.d/shells:fish:release:4.list
+    curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:4/Debian_13/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_4.gpg > /dev/null
+    sudo apt update && sudo apt install -y fish
+    echo "fish installed: $(fish --version)"
+
 install-forgejo-runner:
     #!/usr/bin/env bash
     export ARCH=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')
