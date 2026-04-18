@@ -48,6 +48,17 @@ install-tea:
     chmod +x tea && sudo mv tea /usr/local/bin/tea
     echo "tea ${VERSION} installed"
 
+install-lazygit:
+    #!/usr/bin/env bash
+    ARCH=$(uname -m | sed 's/x86_64/x86_64/;s/aarch64/arm64/')
+    VERSION=$(curl -s https://api.github.com/repos/jesseduffield/lazygit/releases/latest | grep '"tag_name"' | cut -d'"' -f4 | cut -c2-)
+    URL="https://github.com/jesseduffield/lazygit/releases/download/v${VERSION}/lazygit_${VERSION}_Linux_${ARCH}.tar.gz"
+    curl -Lo lazygit.tar.gz "$URL"
+    tar xf lazygit.tar.gz lazygit
+    rm lazygit.tar.gz
+    chmod +x lazygit && sudo mv lazygit /usr/local/bin/lazygit
+    echo "lazygit ${VERSION} installed"
+
 install-fish:
     #!/usr/bin/env bash
     echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/4/Debian_13/ /' | sudo tee /etc/apt/sources.list.d/shells:fish:release:4.list
