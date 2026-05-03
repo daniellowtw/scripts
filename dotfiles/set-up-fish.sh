@@ -38,7 +38,9 @@ mkdir -p ~/.config
 symlink ".config/fish"
 
 echo "Bootstrapping Fisher and installing plugins..."
-fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher && fisher install"
+# fisher_path must be set here too so Fisher installs plugins to the right place
+# during bootstrap, before config.fish has been sourced in a real session.
+fish -c "set -gx fisher_path ~/.local/share/fisher; curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher && fisher install"
 
 read -p "Set fish as default shell? (y/n)? " -n 1 -r
 echo
