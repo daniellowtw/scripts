@@ -3,6 +3,8 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+fish_add_path ~/.local/bin ~/.cargo/bin
+
 set -gx EDITOR vim
 
 test -e ~/.dlow.fish && source ~/.dlow.fish
