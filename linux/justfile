@@ -66,6 +66,39 @@ install-fish:
     sudo apt update && sudo apt install -y fish
     echo "fish installed: $(fish --version)"
 
+install-claude:
+    curl -fsSL https://claude.ai/install.sh | bash
+
+install-go:
+    #!/usr/bin/env bash
+    ARCH=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')
+    VERSION="1.23.4"
+    curl -Lo go.tar.gz "https://go.dev/dl/go${VERSION}.linux-${ARCH}.tar.gz"
+    sudo rm -rf /usr/local/go
+    sudo tar -C /usr/local -xzf go.tar.gz
+    rm go.tar.gz
+    echo "Go ${VERSION} installed to /usr/local/go"
+
+install-tools:
+    sudo apt-get install -y fzf jq ripgrep direnv neovim ncdu tig entr zoxide
+
+install-rust-tools:
+    cargo install starship xplr
+
+install-codium:
+    #!/usr/bin/env bash
+    wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
+        | gpg --dearmor | sudo dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
+    echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' \
+        | sudo tee /etc/apt/sources.list.d/vscodium.list
+    sudo apt-get update && sudo apt-get install -y codium
+
+[working-directory('../dotfiles/')]
+setup:
+    bash ./set-up-fish.sh
+
+install: install-tools install-rust-tools
+
 install-forgejo-runner:
     #!/usr/bin/env bash
     export ARCH=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')
