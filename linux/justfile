@@ -110,3 +110,40 @@ install-forgejo-runner:
     gpg --keyserver hkps://keys.openpgp.org --recv EB114F5E6C0DC2BCDD183550A4B61A2DC5923710
     gpg --verify forgejo-runner.asc forgejo-runner && echo "✓ Verified" || echo "✗ Failed"
 
+# Install Prometheus Node Exporter binary to /usr/local/bin
+install-node-exporter:
+    #!/usr/bin/env bash
+    ARCH=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')
+    VERSION=$(curl -s https://api.github.com/repos/prometheus/node_exporter/releases/latest | grep '"tag_name"' | cut -d'"' -f4 | cut -c2-)
+    URL="https://github.com/prometheus/node_exporter/releases/download/v${VERSION}/node_exporter-${VERSION}.linux-${ARCH}.tar.gz"
+    curl -Lo node_exporter.tar.gz "$URL"
+    tar xf node_exporter.tar.gz --strip-components=1 "node_exporter-${VERSION}.linux-${ARCH}/node_exporter"
+    rm node_exporter.tar.gz
+    chmod +x node_exporter && sudo mv node_exporter /usr/local/bin/node_exporter
+    echo "node_exporter ${VERSION} installed"
+
+# Register Node Exporter as a systemd service (run install-node-exporter first)
+setup-node-exporter-service:
+    #!/usr/bin/env bash
+    sudo useradd --no-create-home --shell /bin/false node_exporter 2>/dev/null || true
+    sudo tee /etc/systemd/system/node_exporter.service > /dev/null <<'EOF'
+    [Unit]
+    Description=Node Exporter
+    Wants=network-online.target
+    After=network-online.target
+
+    [Service]
+    User=node_exporter
+    Group=node_exporter
+    Type=simple
+    ExecStart=/usr/local/bin/node_exporter
+
+    [Install]
+    WantedBy=multi-user.target
+    EOF
+    sudo systemctl daemon-reload
+    sudo systemctl enable node_exporter
+    sudo systemctl start node_exporter
+    echo "node_exporter service enabled and started"
+    echo "Metrics available at http://localhost:9100/metrics"
+
