@@ -69,7 +69,7 @@ install_component() {
   echo "----------------------------------------"
 
   # Source and run the installer
-  source "$script"
+  bash "$script"
 
   echo "----------------------------------------"
   echo ""
