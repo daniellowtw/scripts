@@ -17,7 +17,7 @@ install_nvim() {
 
   info "Installing nvim ${NVIM_VERSION}..."
 
-  local archive="nvim-linu-x86_64.tar.gz"
+  local archive="nvim-linux-86_64.tar.gz"
   local url="https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/${archive}"
 
   # Download
