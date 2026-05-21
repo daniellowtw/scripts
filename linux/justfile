@@ -79,8 +79,13 @@ install-go:
     rm go.tar.gz
     echo "Go ${VERSION} installed to /usr/local/go"
 
-install-tools:
-    sudo apt-get install -y fzf jq ripgrep direnv neovim ncdu tig entr zoxide
+install-fzf:
+    # The one bundled by distros are usually quite old.
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
+
+install-tools: install-lazygit
+    sudo apt-get install -y jq ripgrep direnv ncdu tig entr zoxide
 
 install-rust-tools:
     cargo install starship xplr

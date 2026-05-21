@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -ex
 
 # Get script directory and load utilities
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
@@ -17,7 +17,7 @@ install_nvim() {
 
   info "Installing nvim ${NVIM_VERSION}..."
 
-  local archive="nvim-linux-86_64.tar.gz"
+  local archive="nvim-linux-x86_64.tar.gz"
   local url="https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/${archive}"
 
   # Download
@@ -25,11 +25,11 @@ install_nvim() {
 
   # Install to /opt
   ensure_sudo
-  sudo rm -rf /opt/nvim-linux64
+  sudo rm -rf /opt/nvim-linux-x86_64/
   sudo tar -C /opt -xzf "${archive}"
 
   # Create symlink
-  sudo ln -sf /opt/nvim-linux64/bin/nvim /usr/local/bin/nvim
+  sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
 
   # Cleanup
   rm "${archive}"
