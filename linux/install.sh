@@ -7,7 +7,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/lib/utils.sh"
 
 # Component definitions
-declare -A COMPONENTS=(
+COMPONENTS=(
   [1]="APT Packages (ripgrep, curl, jq, gh, git, fzf, vim, htop, zsh)"
   [2]="yq - YAML processor"
   [3]="Neovim - Modern Vim"
@@ -19,7 +19,7 @@ declare -A COMPONENTS=(
   [9]="just - Command runner"
 )
 
-declare -A INSTALLER_SCRIPTS=(
+INSTALLER_SCRIPTS=(
   [1]="${SCRIPT_DIR}/lib/installers/apt-packages.sh"
   [2]="${SCRIPT_DIR}/lib/installers/yq.sh"
   [3]="${SCRIPT_DIR}/lib/installers/nvim.sh"
