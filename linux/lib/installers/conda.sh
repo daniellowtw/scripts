@@ -17,12 +17,20 @@ install_conda() {
     warn "This installer is interactive and will prompt for input"
 
     local os=$(uname)
-    local arch=$(uname -m)
+    local arch
+    case "$(get_arch)" in
+        amd64) arch="x86_64" ;;
+        arm64) arch="aarch64" ;;
+        *)
+            warn "Miniforge does not support 32-bit ARM, skipping (use a 64-bit OS)"
+            return 0
+            ;;
+    esac
     local installer="Miniforge3-${MINIFORGE_VERSION}-${os}-${arch}.sh"
     local url="https://github.com/conda-forge/miniforge/releases/download/${MINIFORGE_VERSION}/${installer}"
 
     # Download
-    curl -L -O "${url}"
+    curl -fL -O "${url}"
 
     # Run installer
     bash "${installer}"

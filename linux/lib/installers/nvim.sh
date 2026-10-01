@@ -17,19 +17,33 @@ install_nvim() {
 
   info "Installing nvim ${NVIM_VERSION}..."
 
-  local archive="nvim-linux-x86_64.tar.gz"
+  local arch
+  case "$(get_arch)" in
+  amd64) arch="x86_64" ;;
+  arm64) arch="arm64" ;;
+  *)
+    warn "No official nvim build for 32-bit ARM, installing distro package instead"
+    ensure_sudo
+    sudo apt install -y neovim
+    success "nvim installed from apt ($(nvim --version | head -n1))"
+    return 0
+    ;;
+  esac
+
+  local dir="nvim-linux-${arch}"
+  local archive="${dir}.tar.gz"
   local url="https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/${archive}"
 
   # Download
-  curl -LO "${url}"
+  curl -fLO "${url}"
 
   # Install to /opt
   ensure_sudo
-  sudo rm -rf /opt/nvim-linux-x86_64/
+  sudo rm -rf "/opt/${dir}/"
   sudo tar -C /opt -xzf "${archive}"
 
   # Create symlink
-  sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
+  sudo ln -sf "/opt/${dir}/bin/nvim" /usr/local/bin/nvim
 
   # Cleanup
   rm "${archive}"

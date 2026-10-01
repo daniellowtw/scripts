@@ -17,7 +17,11 @@ install_golang() {
 
     info "Installing Go ${GO_VERSION}..."
 
-    local archive="go${GO_VERSION}.linux-amd64.tar.gz"
+    local arch
+    arch=$(get_arch)
+    [[ "$arch" == "armhf" ]] && arch="armv6l"
+
+    local archive="go${GO_VERSION}.linux-${arch}.tar.gz"
     local url="https://go.dev/dl/${archive}"
 
     # Download

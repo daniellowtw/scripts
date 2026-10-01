@@ -17,11 +17,15 @@ install_yq() {
 
     info "Installing yq ${YQ_VERSION}..."
 
-    local binary="yq_linux_amd64"
+    local arch
+    arch=$(get_arch)
+    [[ "$arch" == "armhf" ]] && arch="arm"
+
+    local binary="yq_linux_${arch}"
     local url="https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/${binary}.tar.gz"
 
     # Download and extract
-    wget "${url}" -O - | tar xz
+    curl -fsSL "${url}" | tar xz ./"${binary}"
 
     # Move to /usr/bin
     ensure_sudo

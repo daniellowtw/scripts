@@ -30,6 +30,27 @@ command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
+# Normalized CPU architecture: amd64, arm64 or armhf
+# Prefers dpkg so a 32-bit userland on a 64-bit kernel (common on Raspberry Pi) is detected correctly
+get_arch() {
+    local arch
+    if command_exists dpkg; then
+        arch=$(dpkg --print-architecture)
+    else
+        arch=$(uname -m)
+    fi
+
+    case "$arch" in
+        amd64|x86_64) echo amd64 ;;
+        arm64|aarch64) echo arm64 ;;
+        armhf|armv7l|armv6l|arm) echo armhf ;;
+        *)
+            error "Unsupported architecture: $arch"
+            return 1
+            ;;
+    esac
+}
+
 # Print success message in green
 success() {
     echo -e "\033[0;32m✓ $1\033[0m"

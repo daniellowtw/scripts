@@ -17,13 +17,25 @@ install_just() {
 
     info "Installing just ${JUST_VERSION}..."
 
-    local arch="x86_64"
-    local binary="just-${JUST_VERSION}-${arch}-unknown-linux-musl.tar.gz"
+    local target
+    case "$(get_arch)" in
+        amd64) target="x86_64-unknown-linux-musl" ;;
+        arm64) target="aarch64-unknown-linux-musl" ;;
+        armhf)
+            # Pi Zero / Pi 1 are ARMv6
+            if [[ "$(uname -m)" == "armv6l" ]]; then
+                target="arm-unknown-linux-musleabihf"
+            else
+                target="armv7-unknown-linux-musleabihf"
+            fi
+            ;;
+    esac
+    local binary="just-${JUST_VERSION}-${target}.tar.gz"
     local url="https://github.com/casey/just/releases/download/${JUST_VERSION}/${binary}"
 
     # Download and extract
     info "Downloading from ${url}..."
-    wget "${url}" -O "/tmp/${binary}"
+    curl -fsSL "${url}" -o "/tmp/${binary}"
     tar -xzf "/tmp/${binary}" -C /tmp just
 
     # Move to /usr/local/bin
