@@ -84,8 +84,20 @@ install-fzf:
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install
 
-install-tools: install-lazygit
-    sudo apt-get install -y jq ripgrep direnv ncdu tig entr zoxide
+install-zoxide:
+    #!/usr/bin/env bash
+    # apt's zoxide is too old for fish 4 (reads cd.fish from disk; fixed in 0.10.0).
+    ARCH=$(uname -m)
+    VERSION=$(curl -s https://api.github.com/repos/ajeetdsouza/zoxide/releases/latest | grep '"tag_name"' | cut -d'"' -f4 | cut -c2-)
+    URL="https://github.com/ajeetdsouza/zoxide/releases/download/v${VERSION}/zoxide-${VERSION}-${ARCH}-unknown-linux-musl.tar.gz"
+    curl -Lo zoxide.tar.gz "$URL"
+    tar xf zoxide.tar.gz zoxide
+    rm zoxide.tar.gz
+    chmod +x zoxide && sudo mv zoxide /usr/local/bin/zoxide
+    echo "zoxide ${VERSION} installed"
+
+install-tools: install-lazygit install-zoxide
+    sudo apt-get install -y jq ripgrep direnv ncdu tig entr
 
 install-rust-tools:
     cargo install starship xplr
@@ -151,4 +163,7 @@ setup-node-exporter-service:
     sudo systemctl start node_exporter
     echo "node_exporter service enabled and started"
     echo "Metrics available at http://localhost:9100/metrics"
+
+# Install Node Exporter and register it as a systemd service
+setup-node-exporter: install-node-exporter setup-node-exporter-service
 
