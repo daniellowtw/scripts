@@ -96,6 +96,15 @@ install-zoxide:
     chmod +x zoxide && sudo mv zoxide /usr/local/bin/zoxide
     echo "zoxide ${VERSION} installed"
 
+# Install Yazi from the official stable APT repository
+install-yazi:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    curl -fsSL https://yazi-rs.github.io/builds/yazi-keyring.gpg | sudo tee /usr/share/keyrings/yazi-keyring.gpg >/dev/null
+    echo 'deb [signed-by=/usr/share/keyrings/yazi-keyring.gpg] https://yazi-rs.github.io/builds/ stable main' | sudo tee /etc/apt/sources.list.d/yazi.list >/dev/null
+    sudo apt-get update
+    sudo apt-get install -y yazi
+
 install-tools: install-lazygit install-zoxide
     sudo apt-get install -y jq ripgrep direnv ncdu tig entr
 
